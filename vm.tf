@@ -151,7 +151,9 @@ resource "null_resource" "remote_exec_vm" {
       private_key = file("./key")
     }
     inline = [ "sudo apt update",
-               "sudo apt install -y mysql-server-5.7"
+               "sudo apt install -y mysql-server-5.7",
+               "sudo cat ~/mba/terraform/mysqld.cnf > /etc/mysql/mysql.conf.d/mysqld.cnf",
+               "sudo /etc/init.d/mysql - root -p start"
              ]
   }  
 
